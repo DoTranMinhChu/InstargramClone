@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 
-
 public class HomeActivity extends AppCompatActivity {
 
     @Override

@@ -1,15 +1,16 @@
 package com.dtmchu.instargramclone.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dtmchu.instargramclone.EditContactActivity;
 import com.dtmchu.instargramclone.R;
 import com.dtmchu.instargramclone.model.Contact;
 
@@ -40,11 +41,27 @@ public class ContactsAdapter extends
         Contact contact = mContacts.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = holder.nameTextView;
-        textView.setText(contact.getName());
-        Button button = holder.messageButton;
-        button.setText(contact.isOnline() ? "Message" : "Offline");
-        button.setEnabled(contact.isOnline());
+        TextView idTextView = holder.idTextView;
+        idTextView.setText(String.valueOf(contact.getID()));
+        TextView nameTextView = holder.nameTextView;
+        nameTextView.setText(contact.getName());
+        TextView phoneNumberTextView = holder.phoneNumberTextView;
+        phoneNumberTextView.setText(contact.getPhoneNumber());
+//        Button button = holder.messageButton;
+//        button.setText("Message");
+//        button.setEnabled(true);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create an Intent to start the details activity
+                Intent intent = new Intent(mContext, EditContactActivity.class);
+      //          intent.putExtra("username",contact.getID() + "username");
+                intent.putExtra("isupdate", true);
+                intent.putExtra("contact_id", contact.getID());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -57,8 +74,10 @@ public class ContactsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
+        public TextView idTextView;
         public TextView nameTextView;
-        public Button messageButton;
+        public TextView phoneNumberTextView;
+       // public Button messageButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -67,15 +86,20 @@ public class ContactsAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-            messageButton = (Button) itemView.findViewById(R.id.message_button);
+            idTextView = (TextView) itemView.findViewById(R.id.contactId);
+            nameTextView = (TextView) itemView.findViewById(R.id.contactName);
+            phoneNumberTextView = (TextView) itemView.findViewById(R.id.contactPhoneNumber);
         }
     }
-
+    private Context mContext;
     private List<Contact> mContacts;
 
     // Pass in the contact array into the constructor
     public ContactsAdapter(List<Contact> contacts) {
+        mContacts = contacts;
+    }
+    public ContactsAdapter(Context context , List<Contact> contacts) {
+        mContext = context;
         mContacts = contacts;
     }
 }

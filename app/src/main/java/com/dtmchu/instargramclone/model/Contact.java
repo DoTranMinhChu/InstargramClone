@@ -1,33 +1,41 @@
 package com.dtmchu.instargramclone.model;
 
-import java.util.ArrayList;
-
 public class Contact {
+    private int mId;
     private String mName;
-    private boolean mOnline;
-
-    public Contact(String name, boolean online) {
-        mName = name;
-        mOnline = online;
+    private String mPhoneNumber;
+    public Contact(){   }
+    public Contact(int id,String name, String phoneNumber) {
+        this.mId = id;
+        this.mName = name;
+        this.mPhoneNumber = phoneNumber;
+    }
+    public Contact(String name, String phoneNumber) {
+        this.mName = name;
+        this.mPhoneNumber = phoneNumber;
+    }
+    public int getID(){
+        return this.mId;
     }
 
-    public String getName() {
-        return mName;
+    public void setID(int id){
+        this.mId = id;
     }
 
-    public boolean isOnline() {
-        return mOnline;
+    public String getName(){
+        return this.mName;
     }
 
-    private static int lastContactId = 0;
-
-    public static ArrayList<Contact> createContactsList(int numContacts) {
-        ArrayList<Contact> contacts = new ArrayList<Contact>();
-
-        for (int i = 1; i <= numContacts; i++) {
-            contacts.add(new Contact("Person " + ++lastContactId, i <= numContacts / 2));
-        }
-
-        return contacts;
+    public void setName(String name){
+        this.mName = name;
     }
+
+    public String getPhoneNumber(){
+        return this.mPhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber){
+        this.mPhoneNumber = phoneNumber;
+    }
+
 }
