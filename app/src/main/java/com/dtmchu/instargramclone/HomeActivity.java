@@ -1,10 +1,14 @@
 package com.dtmchu.instargramclone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -16,5 +20,11 @@ public class HomeActivity extends AppCompatActivity {
         Intent iHome = getIntent();
         String username = iHome.getStringExtra("username");
         ((TextView) findViewById(R.id.usernametext)).setText("Welcome : " + username);
+    }
+
+    public void onMangerUser(View view) throws IOException {
+        Intent iHome = new Intent(HomeActivity.this,UsersActivity.class);
+        Toast.makeText(getApplicationContext(),"Redirecting...",Toast.LENGTH_LONG).show();
+        startActivity(iHome);
     }
 }
