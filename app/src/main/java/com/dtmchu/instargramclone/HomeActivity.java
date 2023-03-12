@@ -21,8 +21,8 @@ public class HomeActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.usernametext)).setText("Welcome : " + username);
     }
 
-    public void onMangerUser(View view) throws IOException {
-        Intent iHome = new Intent(HomeActivity.this,UsersActivity.class);
+    public void onMangerContact(View view) throws IOException {
+        Intent iHome = new Intent(HomeActivity.this, ContactsActivity.class);
         Toast.makeText(getApplicationContext(),"Redirecting...",Toast.LENGTH_LONG).show();
         startActivity(iHome);
     }

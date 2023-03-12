@@ -1,5 +1,6 @@
 package com.dtmchu.instargramclone.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ import java.util.List;
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class ContactsAdapter extends
         RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
-
+    final int RESULT_CONTACTS_ACTIVITY = 1;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,7 +60,7 @@ public class ContactsAdapter extends
       //          intent.putExtra("username",contact.getID() + "username");
                 intent.putExtra("isupdate", true);
                 intent.putExtra("contact_id", contact.getID());
-                mContext.startActivity(intent);
+                ((Activity) mContext).startActivityForResult(intent, RESULT_CONTACTS_ACTIVITY);
             }
         });
     }

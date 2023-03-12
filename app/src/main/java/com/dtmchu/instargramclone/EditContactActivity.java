@@ -45,6 +45,9 @@ public class EditContactActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     databaseHandler.deleteContact(contact);
                     finish();
+                    int RESULT_CONTACTS_ACTIVITY = 1;
+                    Intent i = new Intent(EditContactActivity.this, ContactsActivity.class);
+                    startActivityForResult(i, RESULT_CONTACTS_ACTIVITY);
                 }
             });
 
@@ -84,4 +87,6 @@ public class EditContactActivity extends AppCompatActivity {
 
 
     }
+
+
 }
